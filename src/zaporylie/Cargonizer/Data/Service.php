@@ -45,14 +45,14 @@ class Service {
    *
    * @return \zaporylie\Cargonizer\Data\Service
    */
-  public static function unserialize(\SimpleXMLElement $xml) {
+  public static function fromXML(\SimpleXMLElement $xml) {
     $service = new Service();
     $service->setIdentifier((string) $xml->identifier);
     $service->setName((string) $xml->name);
     $attributes = [];
     if (isset($xml->attributes->attribute)) {
       foreach ($xml->attributes->attribute as $attribute) {
-        $attributes[] = Attribute::unserialize($attribute);
+        $attributes[] = Attribute::fromXML($attribute);
       }
     }
     $service->setAttributes($attributes);

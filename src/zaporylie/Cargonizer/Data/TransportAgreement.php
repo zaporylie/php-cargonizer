@@ -65,24 +65,59 @@ class TransportAgreement {
   }
 
   /**
+   * @return int
+   */
+  public function getId() {
+    return $this->id;
+  }
+
+  /**
+   * @return \zaporylie\Cargonizer\Data\Carrier
+   */
+  public function getCarrier() {
+    return $this->carrier;
+  }
+
+  /**
+   * @return string
+   */
+  public function getDescription() {
+    return $this->description;
+  }
+
+  /**
+   * @return int
+   */
+  public function getNumber() {
+    return $this->number;
+  }
+
+  /**
+   * @return \zaporylie\Cargonizer\Data\Product[]
+   */
+  public function getProducts() {
+    return $this->products;
+  }
+
+  /**
    * TransportAgreement constructor.
    *
    * @param \SimpleXMLElement $xml
    *
    * @return \zaporylie\Cargonizer\Data\TransportAgreement
    */
-  public static function unserialize(\SimpleXMLElement $xml) {
+  public static function fromXML(\SimpleXMLElement $xml) {
     $transportAgreement = new TransportAgreement();
     $transportAgreement->setDescription((string) $xml->description);
     $transportAgreement->setId((int) $xml->id);
     $transportAgreement->setNumber((int) $xml->number);
     if ($xml->carrier instanceof \SimpleXMLElement) {
-      $transportAgreement->setCarrier(Carrier::unserialize($xml->carrier));
+      $transportAgreement->setCarrier(Carrier::fromXML($xml->carrier));
     }
     $products = [];
     if (isset($xml->products->product)) {
       foreach ($xml->products->product as $product) {
-        $products[] = Product::unserialize($product);
+        $products[] = Product::fromXML($product);
       }
     }
 

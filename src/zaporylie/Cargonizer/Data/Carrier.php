@@ -29,11 +29,25 @@ class Carrier {
   }
 
   /**
+   * @return string
+   */
+  public function getName() {
+    return $this->name;
+  }
+
+  /**
+   * @return string
+   */
+  public function getIdentifier() {
+    return $this->identifier;
+  }
+
+  /**
    * @param \SimpleXMLElement $xml
    *
    * @return \zaporylie\Cargonizer\Data\Carrier
    */
-  public static function unserialize(\SimpleXMLElement $xml) {
+  public static function fromXML(\SimpleXMLElement $xml) {
     $carrier = new Carrier();
     $carrier->setName((string) $xml->name);
     $carrier->setIdentifier((string) $xml->identifier);

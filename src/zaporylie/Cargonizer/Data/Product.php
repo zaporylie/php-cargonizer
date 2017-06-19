@@ -89,11 +89,25 @@ class Product {
   }
 
   /**
+   * @return string
+   */
+  public function getIdentifier() {
+    return $this->identifier;
+  }
+
+  /**
+   * @return string
+   */
+  public function getName() {
+    return $this->name;
+  }
+
+  /**
    * @param \SimpleXMLElement $xml
    *
    * @return \zaporylie\Cargonizer\Data\Product
    */
-  public static function unserialize(\SimpleXMLElement $xml) {
+  public static function fromXML(\SimpleXMLElement $xml) {
     $product = new Product();
     $product->setIdentifier((string) $xml->identifier);
     $product->setName((string) $xml->name);
@@ -105,7 +119,7 @@ class Product {
     $services = [];
     if (isset($xml->services->service)) {
       foreach ($xml->services->service as $service) {
-        $services[] = Service::unserialize($service);
+        $services[] = Service::fromXML($service);
       }
     }
     $product->setServices($services);

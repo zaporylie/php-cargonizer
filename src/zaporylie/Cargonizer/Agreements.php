@@ -19,7 +19,7 @@ class Agreements extends Client {
 
     /** @var \SimpleXMLElement $agreement */
     foreach ($agreements as $agreement) {
-      $output[] = TransportAgreement::unserialize($agreement);
+      $output[] = TransportAgreement::fromXML($agreement);
     }
 
     return $output;

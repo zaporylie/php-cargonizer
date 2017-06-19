@@ -93,7 +93,7 @@ class Attribute {
    *
    * @return \zaporylie\Cargonizer\Data\Attribute
    */
-  public static function unserialize(\SimpleXMLElement $xml) {
+  public static function fromXML(\SimpleXMLElement $xml) {
     $attribute = new Attribute();
     $attribute->setIdentifier((string) $xml->identifier);
     $attribute->setName((string) $xml->name);
