@@ -2,7 +2,7 @@
 
 namespace zaporylie\Cargonizer\Data;
 
-class Product {
+class Product implements SerializableDataInterface {
 
   /**
    * @var string
@@ -35,7 +35,7 @@ class Product {
   protected $maxWeight;
 
   /**
-   * @var \zaporylie\Cargonizer\Data\Service[]
+   * @var \zaporylie\Cargonizer\Data\Services
    */
   protected $services;
 
@@ -82,7 +82,7 @@ class Product {
   }
 
   /**
-   * @param \zaporylie\Cargonizer\Data\Service[] $services
+   * @param \zaporylie\Cargonizer\Data\Services $services
    */
   public function setServices($services) {
     $this->services = $services;
@@ -103,6 +103,48 @@ class Product {
   }
 
   /**
+   * @return int
+   */
+  public function getMaxItems() {
+    return $this->maxItems;
+  }
+
+  /**
+   * @return int
+   */
+  public function getMaxWeight() {
+    return $this->maxWeight;
+  }
+
+  /**
+   * @return int
+   */
+  public function getMinItems() {
+    return $this->minItems;
+  }
+
+  /**
+   * @return int
+   */
+  public function getMinWeight() {
+    return $this->minWeight;
+  }
+
+  /**
+   * @return \zaporylie\Cargonizer\Data\Services
+   */
+  public function getServices() {
+    return $this->services;
+  }
+
+  /**
+   * Product constructor.
+   */
+  public function __construct() {
+    $this->setServices(new Services());
+  }
+
+  /**
    * @param \SimpleXMLElement $xml
    *
    * @return \zaporylie\Cargonizer\Data\Product
@@ -115,14 +157,24 @@ class Product {
     $product->setMaxItems((int) $xml->max_items);
     $product->setMinWeight((int) $xml->min_weight);
     $product->setMaxWeight((int) $xml->max_weight);
-
-    $services = [];
     if (isset($xml->services->service)) {
-      foreach ($xml->services->service as $service) {
-        $services[] = Service::fromXML($service);
-      }
+      $product->setServices(Services::fromXML($xml->services->service));
     }
-    $product->setServices($services);
     return $product;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function toXML(\SimpleXMLElement $xml) {
+    $product = $xml->addChild('product');
+    $product->addChild('identifier', $this->getIdentifier());
+    $product->addChild('name', $this->getName());
+    $product->addChild('max_items', $this->getMaxItems());
+    $product->addChild('min_items', $this->getMinItems());
+    $product->addChild('max_weight', $this->getMaxWeight());
+    $product->addChild('min_weight', $this->getMinWeight());
+    $this->getServices()->toXML($product);
+    return $xml;
   }
 }

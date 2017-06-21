@@ -11,14 +11,21 @@ try {
   \zaporylie\Cargonizer\Config::set('secret', $settings['secret']);
   \zaporylie\Cargonizer\Config::set('sender', $settings['sender']);
 
-  /** @var \zaporylie\Cargonizer\Data\TransportAgreement[] $result */
-  $result = (new \zaporylie\Cargonizer\Agreements())->getAgreements();
-  foreach ($result as $transportAgreement) {
-    echo '<strong>' . $transportAgreement->getCarrier()->getName() . ':</strong><br>';
-    foreach ($transportAgreement->getProducts() as $product) {
+  /** @var \zaporylie\Cargonizer\Data\TransportAgreements $agreements */
+  $agreements = (new \zaporylie\Cargonizer\Agreements())->getAgreements();
+  var_dump($agreements);
+  foreach ($agreements as $agreement) {
+    echo '<strong>' . $agreement->getCarrier()->getName() . ' (' . $agreement->getId() . '):</strong><br>';
+
+    /** @var \zaporylie\Cargonizer\Data\Product $product */
+    foreach ($agreement->getProducts() as $product) {
       echo $product->getIdentifier() . ' - ' . $product->getName() . '<br>';
     }
   }
+  $xml = $agreements->toXML();
+  $dom = dom_import_simplexml($xml)->ownerDocument;
+  $dom->formatOutput = true;
+  var_dump($dom->saveXML());
 
 }
 catch (\Exception $e) {

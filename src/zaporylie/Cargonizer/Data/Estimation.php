@@ -2,7 +2,7 @@
 
 namespace zaporylie\Cargonizer\Data;
 
-class Estimation {
+class Estimation implements SerializableDataInterface {
 
   /**
    * @var float
@@ -62,15 +62,26 @@ class Estimation {
   }
 
   /**
-   * @param \SimpleXMLElement $xml
-   *
-   * @return \zaporylie\Cargonizer\Data\Estimation
+   * {@inheritdoc}
    */
   public static function fromXML(\SimpleXMLElement $xml) {
     $estimation = new Estimation();
-    $estimation->setEstimated((float) $xml->estimated);
-    $estimation->setGross((float) $xml->gross);
-    $estimation->setNet((float) $xml->net);
+    $estimation->setEstimated((float) $xml->{'estimated-cost'});
+    $estimation->setGross((float) $xml->{'gross-amount'});
+    $estimation->setNet((float) $xml->{'net-amount'});
     return $estimation;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function toXML(\SimpleXMLElement $xml = null) {
+    if ($xml === null) {
+      $xml = new \SimpleXMLElement("<?xml version=\"1.0\" encoding=\"UTF-8\"?><hash></hash>");
+    }
+    $xml->addChild('gross-amount', $this->getGross())->addAttribute("type", "float");
+    $xml->addChild('net-amount', $this->getNet())->addAttribute("type", "float");
+    $xml->addChild('estimated-amount', $this->getEstimated())->addAttribute("type", "float");
+    return $xml;
   }
 }

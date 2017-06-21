@@ -2,7 +2,7 @@
 
 namespace zaporylie\Cargonizer\Data;
 
-class Service {
+class Service implements SerializableDataInterface {
 
   /**
    * @var string
@@ -41,9 +41,28 @@ class Service {
   }
 
   /**
-   * @param \SimpleXMLElement $xml
-   *
-   * @return \zaporylie\Cargonizer\Data\Service
+   * @return string
+   */
+  public function getName() {
+    return $this->name;
+  }
+
+  /**
+   * @return string
+   */
+  public function getIdentifier() {
+    return $this->identifier;
+  }
+
+  /**
+   * @return \zaporylie\Cargonizer\Data\Attribute[]
+   */
+  public function getAttributes() {
+    return $this->attributes;
+  }
+
+  /**
+   * {@inheritdoc}
    */
   public static function fromXML(\SimpleXMLElement $xml) {
     $service = new Service();
@@ -57,5 +76,12 @@ class Service {
     }
     $service->setAttributes($attributes);
     return $service;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function toXML(\SimpleXMLElement $xml) {
+    return $xml;
   }
 }

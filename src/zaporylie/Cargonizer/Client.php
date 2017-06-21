@@ -2,7 +2,9 @@
 
 namespace zaporylie\Cargonizer;
 
+use GuzzleHttp\Exception\ClientException;
 use Http\Client\Exception\NetworkException;
+use Http\Client\Exception\RequestException;
 use Http\Discovery\MessageFactoryDiscovery;
 
 /**
@@ -73,9 +75,12 @@ abstract class Client {
       );
       // Make a request.
       $response = $this->client->sendRequest($request);
-      // @todo: Parse response.
-      return $response;
-    } catch (NetworkException $e) {
+      $xml = simplexml_load_string($response->getBody()->getContents());
+      if (isset($xml->error)) {
+        throw new CargonizerException((string) $xml->error, $request);
+      }
+      return $xml;
+    } catch (RequestException $e) {
       throw $e;
     } catch (\Exception $e) {
       throw new \Exception($e->getMessage(), $e->getCode(), $e);

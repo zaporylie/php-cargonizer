@@ -2,6 +2,8 @@
 
 namespace zaporylie\Cargonizer;
 
+use zaporylie\Cargonizer\Data\Consignments;
+
 /**
  * Class Estimation
  *
@@ -13,11 +15,14 @@ class Estimation extends Client {
   protected $method = 'POST';
 
   /**
-   * @param array $params
+   * @param \zaporylie\Cargonizer\Data\Consignments $consignments
    *
-   * @return mixed
+   * @return \zaporylie\Cargonizer\Data\Estimation
    */
-  public function getEstimation(array $params = []) {
-    return $this->request([], $params);
+  public function getEstimation(Consignments $consignments) {
+    $xml = $consignments->toXML();
+//    $xml = $this->request([], $xml->asXML());
+    $xml = $this->request();
+    return \zaporylie\Cargonizer\Data\Estimation::fromXML($xml);
   }
 }

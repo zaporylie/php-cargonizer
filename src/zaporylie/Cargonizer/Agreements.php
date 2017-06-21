@@ -2,7 +2,7 @@
 
 namespace zaporylie\Cargonizer;
 
-use zaporylie\Cargonizer\Data\TransportAgreement;
+use zaporylie\Cargonizer\Data\TransportAgreements;
 
 class Agreements extends Client {
 
@@ -13,15 +13,8 @@ class Agreements extends Client {
    * @return \zaporylie\Cargonizer\Data\TransportAgreement[]
    */
   public function getAgreements() {
-    $content = $this->request()->getBody()->getContents();
-    $agreements = simplexml_load_string($content);
-    $output = [];
-
-    /** @var \SimpleXMLElement $agreement */
-    foreach ($agreements as $agreement) {
-      $output[] = TransportAgreement::fromXML($agreement);
-    }
-
-    return $output;
+    $xml = $this->request();
+    var_dump($xml);
+    return TransportAgreements::fromXML($xml);
   }
 }

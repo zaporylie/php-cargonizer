@@ -2,7 +2,7 @@
 
 namespace zaporylie\Cargonizer\Data;
 
-class Attribute {
+class Attribute implements SerializableDataInterface {
 
   /**
    * @var string
@@ -89,6 +89,48 @@ class Attribute {
   }
 
   /**
+   * @return string
+   */
+  public function getIdentifier() {
+    return $this->identifier;
+  }
+
+  /**
+   * @return string
+   */
+  public function getName() {
+    return $this->name;
+  }
+
+  /**
+   * @return int
+   */
+  public function getMax() {
+    return $this->max;
+  }
+
+  /**
+   * @return int
+   */
+  public function getMin() {
+    return $this->min;
+  }
+
+  /**
+   * @return string
+   */
+  public function getType() {
+    return $this->type;
+  }
+
+  /**
+   * @return array|null
+   */
+  public function getValues() {
+    return $this->values;
+  }
+
+  /**
    * @param \SimpleXMLElement $xml
    *
    * @return \zaporylie\Cargonizer\Data\Attribute
@@ -102,5 +144,14 @@ class Attribute {
     $attribute->setMin((int) $xml->min);
     $attribute->setMax((int) $xml->max);
     return $attribute;
+  }
+
+  public function toXML(\SimpleXMLElement $xml) {
+    $attribute = $xml->addChild('attribute');
+    $attribute->addChild('identifier', $this->getIdentifier());
+    $attribute->addChild('name', $this->getName());
+    $attribute->addChild('min', $this->getMin());
+    $attribute->addChild('max', $this->getMax());
+    return $xml;
   }
 }

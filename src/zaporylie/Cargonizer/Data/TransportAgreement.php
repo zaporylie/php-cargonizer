@@ -2,7 +2,7 @@
 
 namespace zaporylie\Cargonizer\Data;
 
-class TransportAgreement {
+class TransportAgreement implements SerializableDataInterface {
 
   /**
    * @var string
@@ -25,7 +25,7 @@ class TransportAgreement {
   protected $carrier;
 
   /**
-   * @var \zaporylie\Cargonizer\Data\Product[]
+   * @var \zaporylie\Cargonizer\Data\Products
    */
   protected $products;
 
@@ -39,7 +39,7 @@ class TransportAgreement {
   /**
    * @param \zaporylie\Cargonizer\Data\Carrier $carrier
    */
-  public function setCarrier($carrier) {
+  public function setCarrier(Carrier $carrier) {
     $this->carrier = $carrier;
   }
 
@@ -58,9 +58,9 @@ class TransportAgreement {
   }
 
   /**
-   * @param \zaporylie\Cargonizer\Data\Product[] $products
+   * @param \zaporylie\Cargonizer\Data\Products $products
    */
-  public function setProducts($products) {
+  public function setProducts(Products $products) {
     $this->products = $products;
   }
 
@@ -93,18 +93,14 @@ class TransportAgreement {
   }
 
   /**
-   * @return \zaporylie\Cargonizer\Data\Product[]
+   * @return \zaporylie\Cargonizer\Data\Products
    */
   public function getProducts() {
     return $this->products;
   }
 
   /**
-   * TransportAgreement constructor.
-   *
-   * @param \SimpleXMLElement $xml
-   *
-   * @return \zaporylie\Cargonizer\Data\TransportAgreement
+   * {@inheritdoc}
    */
   public static function fromXML(\SimpleXMLElement $xml) {
     $transportAgreement = new TransportAgreement();
@@ -114,14 +110,25 @@ class TransportAgreement {
     if ($xml->carrier instanceof \SimpleXMLElement) {
       $transportAgreement->setCarrier(Carrier::fromXML($xml->carrier));
     }
-    $products = [];
     if (isset($xml->products->product)) {
-      foreach ($xml->products->product as $product) {
-        $products[] = Product::fromXML($product);
-      }
+      $transportAgreement->setProducts(Products::fromXML($xml->products->product));
     }
-
-    $transportAgreement->setProducts($products);
     return $transportAgreement;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function toXML(\SimpleXMLElement $xml) {
+    $agreement = $xml->addChild('transport-agreement');
+    $agreement->addChild('description', $this->getDescription());
+    $agreement->addChild('id', $this->getId());
+    $agreement->addChild('number', $this->getNumber());
+    $this->getCarrier()->toXML($agreement);
+    $this->getProducts()->toXML($agreement);
+//    $agreement->addChild('products', $this->get);
+//    $agreement->addChild('', $this->get);
+
+    return $xml;
   }
 }

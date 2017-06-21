@@ -2,7 +2,7 @@
 
 namespace zaporylie\Cargonizer\Data;
 
-class Carrier {
+class Carrier implements SerializableDataInterface {
 
   /**
    * @var string
@@ -52,5 +52,17 @@ class Carrier {
     $carrier->setName((string) $xml->name);
     $carrier->setIdentifier((string) $xml->identifier);
     return $carrier;
+  }
+
+  /**
+   * @param \SimpleXMLElement $xml
+   *
+   * @return \SimpleXMLElement
+   */
+  public function toXML(\SimpleXMLElement $xml) {
+    $carrier = $xml->addChild('carrier');
+    $carrier->addChild('identifier', $this->getIdentifier());
+    $carrier->addChild('name', $this->getName());
+    return $xml;
   }
 }

@@ -28,7 +28,9 @@
         "test": [
             "parallel-lint . --exclude vendor",
             "phpunit"
-        ]
+        ],
+        "post-update-cmd": "zaporylie\\Cargonizer\\ScriptHandler::createExamplesConfigFile",
+        "post-install-cmd": "zaporylie\\Cargonizer\\ScriptHandler::createExamplesConfigFile"
     },
     "autoload": {
         "psr-4": {
