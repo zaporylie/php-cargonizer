@@ -21,8 +21,7 @@ class Estimation extends Client {
    */
   public function getEstimation(Consignments $consignments) {
     $xml = $consignments->toXML();
-//    $xml = $this->request([], $xml->asXML());
-    $xml = $this->request();
+    $xml = $this->request([], $xml->asXML());
     return \zaporylie\Cargonizer\Data\Estimation::fromXML($xml);
   }
 }
