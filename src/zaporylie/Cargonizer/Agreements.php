@@ -14,7 +14,6 @@ class Agreements extends Client {
    */
   public function getAgreements() {
     $xml = $this->request();
-    var_dump($xml);
     return TransportAgreements::fromXML($xml);
   }
 }
