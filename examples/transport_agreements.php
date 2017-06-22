@@ -13,7 +13,6 @@ try {
 
   /** @var \zaporylie\Cargonizer\Data\TransportAgreements $agreements */
   $agreements = (new \zaporylie\Cargonizer\Agreements())->getAgreements();
-  var_dump($agreements);
   foreach ($agreements as $agreement) {
     echo '<strong>' . $agreement->getCarrier()->getName() . ' (' . $agreement->getId() . '):</strong><br>';
 
@@ -22,10 +21,6 @@ try {
       echo $product->getIdentifier() . ' - ' . $product->getName() . '<br>';
     }
   }
-  $xml = $agreements->toXML();
-  $dom = dom_import_simplexml($xml)->ownerDocument;
-  $dom->formatOutput = true;
-  var_dump($dom->saveXML());
 
 }
 catch (\Exception $e) {
