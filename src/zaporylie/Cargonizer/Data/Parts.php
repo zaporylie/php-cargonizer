@@ -10,10 +10,22 @@ class Parts implements SerializableDataInterface {
   protected $consignee;
 
   /**
+   * @var \zaporylie\Cargonizer\Data\ServicePartner
+   */
+  protected $servicePartner;
+
+  /**
    * @param \zaporylie\Cargonizer\Data\Consignee $consignee
    */
   public function setConsignee(\zaporylie\Cargonizer\Data\Consignee $consignee) {
     $this->consignee = $consignee;
+  }
+
+  /**
+   * @param \zaporylie\Cargonizer\Data\ServicePartner $servicePartner
+   */
+  public function setServicePartner($servicePartner) {
+    $this->servicePartner = $servicePartner;
   }
 
   /**
@@ -24,6 +36,13 @@ class Parts implements SerializableDataInterface {
   }
 
   /**
+   * @return \zaporylie\Cargonizer\Data\ServicePartner
+   */
+  public function getServicePartner() {
+    return $this->servicePartner;
+  }
+
+  /**
    * @param \SimpleXMLElement $xml
    *
    * @return \zaporylie\Cargonizer\Data\Parts
@@ -31,6 +50,7 @@ class Parts implements SerializableDataInterface {
   public static function fromXML(\SimpleXMLElement $xml) {
     $parts = new Parts();
     $parts->setConsignee(Consignee::fromXML($xml->consignee));
+    $parts->setServicePartner(ServicePartner::fromXML($xml->{'service-partner'}));
     return $parts;
   }
 
@@ -39,7 +59,12 @@ class Parts implements SerializableDataInterface {
    */
   public function toXML(\SimpleXMLElement $xml) {
     $parts = $xml->addChild('parts');
-    $this->getConsignee()->toXML($parts);
+    if ($this->getConsignee()) {
+      $this->getConsignee()->toXML($parts);
+    }
+    if ($this->getServicePartner()) {
+      $this->getServicePartner()->toXML($parts);
+    }
     return $xml;
   }
 }

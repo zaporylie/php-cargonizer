@@ -11,7 +11,7 @@ try {
   \zaporylie\Cargonizer\Config::set('secret', $settings['secret']);
   \zaporylie\Cargonizer\Config::set('sender', $settings['sender']);
 
-  /** @var \zaporylie\Cargonizer\Data\TransportAgreements $agreements */
+  /** @var \zaporylie\Cargonizer\Data\ServicePartners $agreements */
   $agreements = (new \zaporylie\Cargonizer\Agreements())->getAgreements();
   foreach ($agreements as $agreement) {
     echo '<strong>' . $agreement->getCarrier()->getName() . ' (' . $agreement->getId() . '):</strong><br>';

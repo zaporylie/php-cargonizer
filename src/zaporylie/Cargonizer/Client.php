@@ -67,11 +67,12 @@ abstract class Client {
     ];
     try {
       // Build request.
+      /** @var \Psr\Http\Message\RequestInterface $request */
       $request = $this->messageFactoryDiscovery()->createRequest(
         $this->getMetod(),
-        Config::get('endpoint') . $this->getResource(),
+        Config::get('endpoint') . $this->getResource() . ($this->getMetod() == 'GET' && !empty($data) ? '?' . build_query($data) : NULL),
         $headers,
-        $data
+        $this->getMetod() == 'GET' ? NULL : $data
       );
       // Make a request.
       $response = $this->client->sendRequest($request);

@@ -10,7 +10,7 @@ class Agreements extends Client {
   protected $method = 'GET';
 
   /**
-   * @return \zaporylie\Cargonizer\Data\TransportAgreement[]
+   * @return \zaporylie\Cargonizer\Data\TransportAgreements
    */
   public function getAgreements() {
     $xml = $this->request();
