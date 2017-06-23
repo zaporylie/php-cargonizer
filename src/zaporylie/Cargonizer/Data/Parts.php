@@ -17,15 +17,17 @@ class Parts implements SerializableDataInterface {
   /**
    * @param \zaporylie\Cargonizer\Data\Consignee $consignee
    */
-  public function setConsignee(\zaporylie\Cargonizer\Data\Consignee $consignee) {
+  public function setConsignee(Consignee $consignee) {
     $this->consignee = $consignee;
+    return $this;
   }
 
   /**
    * @param \zaporylie\Cargonizer\Data\ServicePartner $servicePartner
    */
-  public function setServicePartner($servicePartner) {
+  public function setServicePartner(ServicePartner $servicePartner) {
     $this->servicePartner = $servicePartner;
+    return $this;
   }
 
   /**
@@ -49,7 +51,7 @@ class Parts implements SerializableDataInterface {
    */
   public static function fromXML(\SimpleXMLElement $xml) {
     $parts = new Parts();
-    $parts->setConsignee(Consignee::fromXML($xml->consignee));
+    $parts->setConsignee(Consignee::fromXML($xml->{'consignee'}));
     $parts->setServicePartner(ServicePartner::fromXML($xml->{'service-partner'}));
     return $parts;
   }

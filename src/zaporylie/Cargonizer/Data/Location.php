@@ -62,6 +62,7 @@ class Location implements SerializableDataInterface {
    */
   public function setCity($city) {
     $this->city = $city;
+    return $this;
   }
 
   /**
@@ -69,6 +70,7 @@ class Location implements SerializableDataInterface {
    */
   public function setCountry($country) {
     $this->country = $country;
+    return $this;
   }
 
   /**
@@ -76,6 +78,7 @@ class Location implements SerializableDataInterface {
    */
   public function setPostcode($postcode) {
     $this->postcode = $postcode;
+    return $this;
   }
 
   /**
@@ -83,6 +86,7 @@ class Location implements SerializableDataInterface {
    */
   public function setId($id) {
     $this->id = $id;
+    return $this;
   }
 
   /**

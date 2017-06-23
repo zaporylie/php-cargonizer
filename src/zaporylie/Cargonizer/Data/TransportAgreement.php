@@ -34,6 +34,7 @@ class TransportAgreement implements SerializableDataInterface {
    */
   public function setDescription($description) {
     $this->description = $description;
+    return $this;
   }
 
   /**
@@ -41,6 +42,7 @@ class TransportAgreement implements SerializableDataInterface {
    */
   public function setCarrier(Carrier $carrier) {
     $this->carrier = $carrier;
+    return $this;
   }
 
   /**
@@ -48,6 +50,7 @@ class TransportAgreement implements SerializableDataInterface {
    */
   public function setId($id) {
     $this->id = $id;
+    return $this;
   }
 
   /**
@@ -55,6 +58,7 @@ class TransportAgreement implements SerializableDataInterface {
    */
   public function setNumber($number) {
     $this->number = $number;
+    return $this;
   }
 
   /**
@@ -62,6 +66,7 @@ class TransportAgreement implements SerializableDataInterface {
    */
   public function setProducts(Products $products) {
     $this->products = $products;
+    return $this;
   }
 
   /**

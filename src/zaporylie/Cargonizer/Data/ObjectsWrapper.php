@@ -6,6 +6,8 @@ abstract class ObjectsWrapper implements \Iterator
 {
 
   /**
+   * Array of mixed objects.
+   *
    * @var array
    */
   protected $array = [];
@@ -18,7 +20,9 @@ abstract class ObjectsWrapper implements \Iterator
   }
 
   /**
-   * @param $delta
+   * Remove item from array.
+   *
+   * @param string|int $delta
    *
    * @return self
    */
@@ -29,23 +33,39 @@ abstract class ObjectsWrapper implements \Iterator
     return $this;
   }
 
-  function rewind() {
-    reset($this->array);
+  /**
+   * {@inheritdoc}
+   */
+  public function rewind() {
+    return reset($this->array);
   }
 
-  function current() {
+  /**
+   * {@inheritdoc}
+   */
+  public function current() {
     return current($this->array);
   }
 
-  function key() {
+  /**
+   * {@inheritdoc}
+   */
+  public function key() {
     return key($this->array);
   }
 
-  function next() {
-    next($this->array);
+  /**
+   * {@inheritdoc}
+   */
+  public function next() {
+    return next($this->array);
   }
 
-  function valid() {
+  /**
+   * {@inheritdoc}
+   */
+  public function valid() {
     return key($this->array) !== null;
   }
+
 }

@@ -24,6 +24,7 @@ class Estimation implements SerializableDataInterface {
    */
   public function setEstimated($estimated) {
     $this->estimated = $estimated;
+    return $this;
   }
 
   /**
@@ -31,6 +32,7 @@ class Estimation implements SerializableDataInterface {
    */
   public function setGross($gross) {
     $this->gross = $gross;
+    return $this;
   }
 
   /**
@@ -38,6 +40,7 @@ class Estimation implements SerializableDataInterface {
    */
   public function setNet($net) {
     $this->net = $net;
+    return $this;
   }
 
   /**

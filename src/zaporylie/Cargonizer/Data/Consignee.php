@@ -107,6 +107,7 @@ class Consignee implements SerializableDataInterface {
    */
   public function setNumber($number) {
     $this->number = $number;
+    return $this;
   }
 
   /**
@@ -114,6 +115,7 @@ class Consignee implements SerializableDataInterface {
    */
   public function setName($name) {
     $this->name = $name;
+    return $this;
   }
 
   /**
@@ -121,6 +123,7 @@ class Consignee implements SerializableDataInterface {
    */
   public function setAddress1($address1) {
     $this->address1 = $address1;
+    return $this;
   }
 
   /**
@@ -128,6 +131,7 @@ class Consignee implements SerializableDataInterface {
    */
   public function setAddress2($address2) {
     $this->address2 = $address2;
+    return $this;
   }
 
   /**
@@ -135,6 +139,7 @@ class Consignee implements SerializableDataInterface {
    */
   public function setCity($city) {
     $this->city = $city;
+    return $this;
   }
 
   /**
@@ -142,6 +147,7 @@ class Consignee implements SerializableDataInterface {
    */
   public function setCountry($country) {
     $this->country = $country;
+    return $this;
   }
 
   /**
@@ -149,6 +155,7 @@ class Consignee implements SerializableDataInterface {
    */
   public function setPostcode($postcode) {
     $this->postcode = $postcode;
+    return $this;
   }
 
   /**
@@ -156,6 +163,7 @@ class Consignee implements SerializableDataInterface {
    */
   public function setContactPerson($contactPerson) {
     $this->contactPerson = $contactPerson;
+    return $this;
   }
 
   /**
@@ -163,6 +171,7 @@ class Consignee implements SerializableDataInterface {
    */
   public function setCustomerNumber($customerNumber) {
     $this->customerNumber = $customerNumber;
+    return $this;
   }
 
   /**
@@ -170,6 +179,7 @@ class Consignee implements SerializableDataInterface {
    */
   public function setEmail($email) {
     $this->email = $email;
+    return $this;
   }
 
   /**
@@ -177,6 +187,7 @@ class Consignee implements SerializableDataInterface {
    */
   public function setMobile($mobile) {
     $this->mobile = $mobile;
+    return $this;
   }
 
   /**
@@ -184,6 +195,7 @@ class Consignee implements SerializableDataInterface {
    */
   public function setPhone($phone) {
     $this->phone = $phone;
+    return $this;
   }
 
   /**
@@ -191,6 +203,7 @@ class Consignee implements SerializableDataInterface {
    */
   public function setFax($fax) {
     $this->fax = $fax;
+    return $this;
   }
 
   /**
@@ -198,6 +211,7 @@ class Consignee implements SerializableDataInterface {
    */
   public function setFreightPayer($freightPayer) {
     $this->freightPayer = $freightPayer;
+    return $this;
   }
 
   /**

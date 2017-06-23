@@ -44,6 +44,7 @@ class Attribute implements SerializableDataInterface {
    */
   public function setIdentifier($identifier) {
     $this->identifier = $identifier;
+    return $this;
   }
 
   /**
@@ -51,6 +52,7 @@ class Attribute implements SerializableDataInterface {
    */
   public function setName($name) {
     $this->name = $name;
+    return $this;
   }
 
   /**
@@ -58,6 +60,7 @@ class Attribute implements SerializableDataInterface {
    */
   public function setMin($min) {
     $this->min = $min;
+    return $this;
   }
 
   /**
@@ -65,6 +68,7 @@ class Attribute implements SerializableDataInterface {
    */
   public function setMax($max) {
     $this->max = $max;
+    return $this;
   }
 
   /**
@@ -72,6 +76,7 @@ class Attribute implements SerializableDataInterface {
    */
   public function setRequired($required) {
     $this->required = $required;
+    return $this;
   }
 
   /**
@@ -79,6 +84,7 @@ class Attribute implements SerializableDataInterface {
    */
   public function setType($type) {
     $this->type = $type;
+    return $this;
   }
 
   /**
@@ -86,6 +92,7 @@ class Attribute implements SerializableDataInterface {
    */
   public function setValues($values) {
     $this->values = $values;
+    return $this;
   }
 
   /**

@@ -41,6 +41,7 @@ class Consignment implements SerializableDataInterface {
    */
   public function setTransportAgreement($transportAgreement) {
     $this->transportAgreement = $transportAgreement;
+    return $this;
   }
 
   /**
@@ -48,6 +49,7 @@ class Consignment implements SerializableDataInterface {
    */
   public function setItems(Items $items) {
     $this->items = $items;
+    return $this;
   }
 
   /**
@@ -55,6 +57,7 @@ class Consignment implements SerializableDataInterface {
    */
   public function addItem(Item $item) {
     $this->items[] = $item;
+    return $this;
   }
 
   /**
@@ -62,13 +65,15 @@ class Consignment implements SerializableDataInterface {
    */
   public function setProduct($product) {
     $this->product = $product;
+    return $this;
   }
 
   /**
    * @param \zaporylie\Cargonizer\Data\Parts $parts
    */
-  public function setParts($parts) {
+  public function setParts(Parts $parts) {
     $this->parts = $parts;
+    return $this;
   }
 
   /**

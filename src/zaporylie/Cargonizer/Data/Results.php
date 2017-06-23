@@ -18,15 +18,17 @@ class Results implements SerializableDataInterface {
   /**
    * @param \zaporylie\Cargonizer\Data\Location $location
    */
-  public function setLocation($location) {
+  public function setLocation(Location $location) {
     $this->location = $location;
+    return $this;
   }
 
   /**
    * @param \zaporylie\Cargonizer\Data\ServicePartners $servicePartners
    */
-  public function setServicePartners($servicePartners) {
+  public function setServicePartners(ServicePartners $servicePartners) {
     $this->servicePartners = $servicePartners;
+    return $this;
   }
 
   /**

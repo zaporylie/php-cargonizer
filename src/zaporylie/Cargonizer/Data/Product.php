@@ -44,6 +44,7 @@ class Product implements SerializableDataInterface {
    */
   public function setIdentifier($identifier) {
     $this->identifier = $identifier;
+    return $this;
   }
 
   /**
@@ -51,6 +52,7 @@ class Product implements SerializableDataInterface {
    */
   public function setMaxItems($maxItems) {
     $this->maxItems = $maxItems;
+    return $this;
   }
 
   /**
@@ -58,6 +60,7 @@ class Product implements SerializableDataInterface {
    */
   public function setMaxWeight($maxWeight) {
     $this->maxWeight = $maxWeight;
+    return $this;
   }
 
   /**
@@ -65,6 +68,7 @@ class Product implements SerializableDataInterface {
    */
   public function setMinItems($minItems) {
     $this->minItems = $minItems;
+    return $this;
   }
 
   /**
@@ -72,6 +76,7 @@ class Product implements SerializableDataInterface {
    */
   public function setMinWeight($minWeight) {
     $this->minWeight = $minWeight;
+    return $this;
   }
 
   /**
@@ -79,13 +84,15 @@ class Product implements SerializableDataInterface {
    */
   public function setName($name) {
     $this->name = $name;
+    return $this;
   }
 
   /**
    * @param \zaporylie\Cargonizer\Data\Services $services
    */
-  public function setServices($services) {
+  public function setServices(Services $services) {
     $this->services = $services;
+    return $this;
   }
 
   /**
@@ -141,7 +148,6 @@ class Product implements SerializableDataInterface {
    * Product constructor.
    */
   public function __construct() {
-    $this->setServices(new Services());
   }
 
   /**

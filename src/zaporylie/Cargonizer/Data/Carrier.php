@@ -19,6 +19,7 @@ class Carrier implements SerializableDataInterface {
    */
   public function setName($name) {
     $this->name = $name;
+    return $this;
   }
 
   /**
@@ -26,6 +27,7 @@ class Carrier implements SerializableDataInterface {
    */
   public function setIdentifier($identifier) {
     $this->identifier = $identifier;
+    return $this;
   }
 
   /**

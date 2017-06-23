@@ -24,6 +24,7 @@ class Service implements SerializableDataInterface {
    */
   public function setIdentifier($identifier) {
     $this->identifier = $identifier;
+    return $this;
   }
 
   /**
@@ -31,6 +32,7 @@ class Service implements SerializableDataInterface {
    */
   public function setName($name) {
     $this->name = $name;
+    return $this;
   }
 
   /**
@@ -38,6 +40,7 @@ class Service implements SerializableDataInterface {
    */
   public function setAttributes($attributes) {
     $this->attributes = $attributes;
+    return $this;
   }
 
   /**

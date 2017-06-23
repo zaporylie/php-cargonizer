@@ -98,6 +98,7 @@ class ServicePartner implements SerializableDataInterface {
    */
   public function setPostcode($postcode) {
     $this->postcode = $postcode;
+    return $this;
   }
 
   /**
@@ -105,6 +106,7 @@ class ServicePartner implements SerializableDataInterface {
    */
   public function setCountry($country) {
     $this->country = $country;
+    return $this;
   }
 
   /**
@@ -112,6 +114,7 @@ class ServicePartner implements SerializableDataInterface {
    */
   public function setCity($city) {
     $this->city = $city;
+    return $this;
   }
 
   /**
@@ -119,6 +122,7 @@ class ServicePartner implements SerializableDataInterface {
    */
   public function setAddress2($address2) {
     $this->address2 = $address2;
+    return $this;
   }
 
   /**
@@ -126,6 +130,7 @@ class ServicePartner implements SerializableDataInterface {
    */
   public function setAddress1($address1) {
     $this->address1 = $address1;
+    return $this;
   }
 
   /**
@@ -133,6 +138,7 @@ class ServicePartner implements SerializableDataInterface {
    */
   public function setName($name) {
     $this->name = $name;
+    return $this;
   }
 
   /**
@@ -140,6 +146,7 @@ class ServicePartner implements SerializableDataInterface {
    */
   public function setNumber($number) {
     $this->number = $number;
+    return $this;
   }
 
   /**

@@ -70,6 +70,7 @@ class Item implements SerializableDataInterface {
    */
   public function setDescription($description) {
     $this->description = $description;
+    return $this;
   }
 
   /**
@@ -77,6 +78,7 @@ class Item implements SerializableDataInterface {
    */
   public function setAmount($amount) {
     $this->amount = $amount;
+    return $this;
   }
 
   /**
@@ -84,6 +86,7 @@ class Item implements SerializableDataInterface {
    */
   public function setHeight($height) {
     $this->height = $height;
+    return $this;
   }
 
   /**
@@ -91,6 +94,7 @@ class Item implements SerializableDataInterface {
    */
   public function setLength($length) {
     $this->length = $length;
+    return $this;
   }
 
   /**
@@ -98,6 +102,7 @@ class Item implements SerializableDataInterface {
    */
   public function setLoadMeter($loadMeter) {
     $this->loadMeter = $loadMeter;
+    return $this;
   }
 
   /**
@@ -105,6 +110,7 @@ class Item implements SerializableDataInterface {
    */
   public function setPackage($package) {
     $this->package = $package;
+    return $this;
   }
 
   /**
@@ -112,6 +118,7 @@ class Item implements SerializableDataInterface {
    */
   public function setVolume($volume) {
     $this->volume = $volume;
+    return $this;
   }
 
   /**
@@ -119,6 +126,7 @@ class Item implements SerializableDataInterface {
    */
   public function setWeight($weight) {
     $this->weight = $weight;
+    return $this;
   }
 
   /**
@@ -126,6 +134,7 @@ class Item implements SerializableDataInterface {
    */
   public function setWidth($width) {
     $this->width = $width;
+    return $this;
   }
 
   /**
