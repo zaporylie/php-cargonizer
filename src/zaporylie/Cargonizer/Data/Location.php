@@ -90,10 +90,10 @@ class Location implements SerializableDataInterface {
    */
   public static function fromXML(\SimpleXMLElement $xml) {
     $location = new Location();
-    $location->setCity($xml->city);
-    $location->setPostcode($xml->postcode);
-    $location->setCountry($xml->country);
-    $location->setId($xml->id);
+    $location->setCity((string) $xml->city);
+    $location->setPostcode((string) $xml->postcode);
+    $location->setCountry((string) $xml->country);
+    $location->setId((int) $xml->id);
     return $location;
   }
 

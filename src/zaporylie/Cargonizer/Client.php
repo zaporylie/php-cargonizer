@@ -2,8 +2,6 @@
 
 namespace zaporylie\Cargonizer;
 
-use GuzzleHttp\Exception\ClientException;
-use Http\Client\Exception\NetworkException;
 use Http\Client\Exception\RequestException;
 use Http\Discovery\MessageFactoryDiscovery;
 
@@ -70,7 +68,7 @@ abstract class Client {
       /** @var \Psr\Http\Message\RequestInterface $request */
       $request = $this->messageFactoryDiscovery()->createRequest(
         $this->getMetod(),
-        Config::get('endpoint') . $this->getResource() . ($this->getMetod() == 'GET' && !empty($data) ? '?' . build_query($data) : NULL),
+        Config::get('endpoint') . $this->getResource() . ($this->getMetod() == 'GET' && !empty($data) ? '?' . http_build_query($data) : NULL),
         $headers,
         $this->getMetod() == 'GET' ? NULL : $data
       );
@@ -79,7 +77,6 @@ abstract class Client {
 
       // Parse response.
       $xml = simplexml_load_string($response->getBody()->getContents());
-
       // Handle errors.
       if (isset($xml->error)) {
         throw new CargonizerException((string) $xml->error, $request);
