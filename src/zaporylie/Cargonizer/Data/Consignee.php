@@ -328,36 +328,16 @@ class Consignee implements SerializableDataInterface {
    */
   public function toXML(\SimpleXMLElement $xml) {
     $consignee = $xml->addChild('consignee');
-    if ($this->getName()) {
-      $consignee->addChild('name', $this->getName());
-    }
-    if ($this->getCountry()) {
-      $consignee->addChild('country', $this->getCountry());
-    }
-    if ($this->getPostcode()) {
-      $consignee->addChild('postcode', $this->getPostcode());
-    }
-    if ($this->getCity()) {
-      $consignee->addChild('city', $this->getCity());
-    }
-    if ($this->getAddress1()) {
-      $consignee->addChild('address1', $this->getAddress1());
-    }
-    if ($this->getAddress2()) {
-      $consignee->addChild('address2', $this->getAddress2());
-    }
-    if ($this->getEmail()) {
-      $consignee->addChild('email', $this->getEmail());
-    }
-    if ($this->getMobile()) {
-      $consignee->addChild('mobile', $this->getMobile());
-    }
-    if ($this->getPhone()) {
-      $consignee->addChild('phone', $this->getPhone());
-    }
-    if ($this->getFax()) {
-      $consignee->addChild('fax', $this->getFax());
-    }
+    $consignee->addChild('name', $this->getName());
+    $consignee->addChild('country', $this->getCountry());
+    $consignee->addChild('postcode', $this->getPostcode());
+    $consignee->addChild('city', $this->getCity());
+    $consignee->addChild('address1', $this->getAddress1());
+    $consignee->addChild('address2', $this->getAddress2());
+    $consignee->addChild('email', $this->getEmail());
+    $consignee->addChild('mobile', $this->getMobile());
+    $consignee->addChild('phone', $this->getPhone());
+    $consignee->addChild('fax', $this->getFax());
     return $xml;
   }
 }
