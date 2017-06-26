@@ -10,11 +10,10 @@ class Profile extends Client {
   protected $method = 'GET';
 
   /**
-   * @return \zaporylie\Cargonizer\Data\TransportAgreements
+   * @return \zaporylie\Cargonizer\Data\User
    */
   public function getProfile() {
     $xml = $this->request();
-    var_dump($xml);
     return User::fromXML($xml);
   }
 }
