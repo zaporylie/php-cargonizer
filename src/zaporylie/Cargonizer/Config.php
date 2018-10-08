@@ -13,8 +13,8 @@ use Http\Discovery\HttpClientDiscovery;
  */
 class Config
 {
-  const SANDBOX = 'http://sandbox.cargonizer.no';
-  const PRODUCTION = 'http://cargonizer.no';
+  const SANDBOX = 'https://sandbox.cargonizer.no';
+  const PRODUCTION = 'https://cargonizer.no';
 
   protected static $config = [
     'endpoint' => self::SANDBOX,
