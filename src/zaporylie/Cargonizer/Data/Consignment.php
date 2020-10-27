@@ -33,8 +33,45 @@ class Consignment implements SerializableDataInterface {
    */
   protected $items;
   protected $services;
+
+  /**
+   * @var \zaporylie\Cargonizer\Data\References
+   */
   protected $references;
   protected $message;
+
+
+  /**
+   * @return mixed
+   */
+  public function getTransfer() {
+    return $this->transfer;
+  }
+
+  /**
+   * @param mixed $transfer
+   */
+  public function setTransfer($transfer) {
+    $this->transfer = $transfer;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getPrint() {
+    return $this->print;
+  }
+
+  /**
+   * @param mixed $print
+   */
+  public function setPrint($print) {
+    $this->print = $print;
+  }
+
+  public function setReferences(References $references) {
+    $this->references = $references;
+  }
 
   /**
    * @param int $transportAgreement
@@ -121,6 +158,10 @@ class Consignment implements SerializableDataInterface {
     return $consignment;
   }
 
+  public function getReferences() {
+    return $this->references;
+  }
+
   /**
    * @return string
    */
@@ -128,6 +169,7 @@ class Consignment implements SerializableDataInterface {
     $consignment = $xml->addChild('consignment');
     $consignment->addAttribute("transport_agreement", $this->getTransportAgreement());
     $consignment->addChild('product', $this->getProduct());
+    $this->getReferences()->toXML($consignment);
     $this->getParts()->toXML($consignment);
     $this->getItems()->toXML($consignment);
     return $xml;
