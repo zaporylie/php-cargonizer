@@ -338,6 +338,7 @@ class Consignee implements SerializableDataInterface {
     $consignee->addChild('mobile', $this->getMobile());
     $consignee->addChild('phone', $this->getPhone());
     $consignee->addChild('fax', $this->getFax());
+    $consignee->addChild('customer-number', $this->getCustomerNumber());
     return $xml;
   }
 }

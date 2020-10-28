@@ -217,6 +217,7 @@ class Item implements SerializableDataInterface {
     $item->addAttribute('type', $this->getPackage());
     $item->addAttribute('amount', $this->getAmount());
     $item->addAttribute('weight', $this->getWeight());
+    $item->addAttribute('description', $this->getDescription());
 
     return $xml;
   }

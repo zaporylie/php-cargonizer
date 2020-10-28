@@ -15,8 +15,16 @@ class Consignment implements SerializableDataInterface {
   protected $estimate;
   protected $transfer;
   protected $bookingRequest;
-  protected $print;
-  protected $values;
+
+  /**
+   * @var bool
+   */
+  protected $print = false;
+
+  /**
+   * @var array
+   */
+  protected $values = [];
 
   /**
    * @var string
@@ -32,7 +40,11 @@ class Consignment implements SerializableDataInterface {
    * @var \zaporylie\Cargonizer\Data\Items
    */
   protected $items;
-  protected $services;
+
+  /**
+   * @var array
+   */
+  protected $services = [];
 
   /**
    * @var \zaporylie\Cargonizer\Data\References
@@ -67,6 +79,20 @@ class Consignment implements SerializableDataInterface {
    */
   public function setPrint($print) {
     $this->print = $print;
+  }
+
+  /**
+   * @return bool
+   */
+  public function getEstimate() {
+    return $this->estimate;
+  }
+
+  /**
+   * @param bool $estimate
+   */
+  public function setEstimate($estimate) {
+    $this->estimate = $estimate;
   }
 
   public function setReferences(References $references) {
@@ -120,6 +146,29 @@ class Consignment implements SerializableDataInterface {
     return $this->values;
   }
 
+  public function addValue($key, $value) {
+    $this->values[$key] = $value;
+  }
+
+  public function setValues(array $values) {
+    $this->values = $values;
+  }
+
+  /**
+   * @return array
+   */
+  public function getServices() {
+    return $this->services;
+  }
+
+  public function addService($id) {
+    $this->services[] = $id;
+  }
+
+  public function setServices(array $values) {
+    $this->services = $values;
+  }
+
   /**
    * @return string
    */
@@ -168,10 +217,32 @@ class Consignment implements SerializableDataInterface {
   public function toXML(\SimpleXMLElement $xml) {
     $consignment = $xml->addChild('consignment');
     $consignment->addAttribute("transport_agreement", $this->getTransportAgreement());
+    if ($this->getPrint()) {
+      $consignment->addAttribute('print', 'true');
+    }
+    if ($this->getEstimate()) {
+      $consignment->addAttribute('estimate', 'true');
+      // I have also seen this variant.
+      $consignment->addAttribute('cost_estimate', 'true');
+    }
+    $values = $consignment->addChild('values');
+    foreach ($this->values as $key => $value) {
+      $value_el = $values->addChild('value');
+      $value_el->addAttribute('name', $key);
+      $value_el->addAttribute('value', $value);
+    }
+    if ($this->getTransfer()) {
+      $consignment->addChild('transfer', 'true');
+    }
     $consignment->addChild('product', $this->getProduct());
     $this->getReferences()->toXML($consignment);
     $this->getParts()->toXML($consignment);
     $this->getItems()->toXML($consignment);
+    $services = $consignment->addChild('services');
+    foreach ($this->getServices() as $service) {
+      $service_el = $services->addChild('service');
+      $service_el->addAttribute('id', $service);
+    }
     return $xml;
   }
 }
