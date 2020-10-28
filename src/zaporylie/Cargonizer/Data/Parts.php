@@ -15,6 +15,26 @@ class Parts implements SerializableDataInterface {
   protected $servicePartner;
 
   /**
+   * @var \zaporylie\Cargonizer\Data\ReturnAddress
+   */
+  protected $returnAddress;
+
+  /**
+   * @return \zaporylie\Cargonizer\Data\ReturnAddress
+   */
+  public function getReturnAddress() {
+    return $this->returnAddress;
+  }
+
+  /**
+   * @param \zaporylie\Cargonizer\Data\ReturnAddress $returnAddress
+   */
+  public function setReturnAddress(\zaporylie\Cargonizer\Data\ReturnAddress $returnAddress) {
+    $this->returnAddress = $returnAddress;
+    return $this;
+  }
+
+  /**
    * @param \zaporylie\Cargonizer\Data\Consignee $consignee
    */
   public function setConsignee(Consignee $consignee) {
@@ -66,6 +86,9 @@ class Parts implements SerializableDataInterface {
     }
     if ($this->getServicePartner()) {
       $this->getServicePartner()->toXML($parts);
+    }
+    if ($this->getReturnAddress()) {
+      $this->getReturnAddress()->toXML($parts);
     }
     return $xml;
   }
