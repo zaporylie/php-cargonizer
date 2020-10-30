@@ -220,6 +220,9 @@ class Consignment implements SerializableDataInterface {
     if ($this->getPrint()) {
       $consignment->addAttribute('print', 'true');
     }
+    else {
+      $consignment->addAttribute('print', 'false');
+    }
     if ($this->getEstimate()) {
       $consignment->addAttribute('estimate', 'true');
       // I have also seen this variant.
