@@ -28,10 +28,6 @@ jobs:
     docker:
       - image: circleci/php:7.4-cli
     <<: *shared
-  "php80":
-    docker:
-      - image: circleci/php:8-cli
-    <<: *shared
 
 workflows:
   version: 2
@@ -42,4 +38,3 @@ workflows:
       - "php72"
       - "php73"
       - "php74"
-      - "php80"
