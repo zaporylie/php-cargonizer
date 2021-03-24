@@ -156,7 +156,7 @@ class ServicePartner implements SerializableDataInterface {
     $partner = new ServicePartner();
     $partner->setPostcode((string) $xml->postcode);
     $partner->setCountry((string) $xml->country);
-    $partner->setName((string) $xml->country);
+    $partner->setName((string) $xml->name);
     $partner->setAddress1((string) $xml->address1);
     $partner->setAddress2((string) $xml->address2);
     $partner->setCity((string) $xml->city);
