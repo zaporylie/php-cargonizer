@@ -21,9 +21,10 @@ class ServicePartners extends ObjectsWrapper implements SerializableDataInterfac
   public static function fromXML(\SimpleXMLElement $xml) {
     $servicePartners = new ServicePartners();
 
-    /** @var \SimpleXMLElement $agreement */
-    foreach ($xml as $partner) {
-      $servicePartners->addItem(ServicePartner::fromXML($partner->{'service-partner'}));
+    if (isset($xml->{'service-partner'})) {
+      foreach ($xml->{'service-partner'} as $partner) {
+        $servicePartners->addItem(ServicePartner::fromXML($partner));
+      }
     }
 
     return $servicePartners;

@@ -74,11 +74,13 @@ abstract class Client {
       );
       // Make a request.
       $response = $this->client->sendRequest($request);
-
-      // Parse response.
-      $xml = simplexml_load_string($response->getBody()->getContents());
+      $content = $response->getBody()->getContents();
+      $xml = @simplexml_load_string($content);
       // Handle errors.
-      if (isset($xml->error)) {
+      if ($response->getStatusCode() === 400 && !isset($xml->error) && !isset($xml->consignment->errors->error)) {
+        throw new CargonizerException((string) $content, $request);
+      }
+      elseif (isset($xml->error)) {
         throw new CargonizerException((string) $xml->error, $request);
       }
       elseif (isset($xml->consignment->errors->error)) {
