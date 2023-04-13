@@ -35,5 +35,10 @@
         "psr-4": {
             "zaporylie\\Cargonizer\\": "src/zaporylie/Cargonizer"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     }
 }

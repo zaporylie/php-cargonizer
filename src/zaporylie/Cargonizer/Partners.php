@@ -17,11 +17,20 @@ class Partners extends Client {
    * @param string $country
    * @param string $postcode
    * @param string $carrier
+   * @param string|null $product
+   * @param string|null $shop_id
    *
    * @return \zaporylie\Cargonizer\Data\Results
    */
-  public function getPickupPoints($country, $postcode, $carrier) {
-    $xml = $this->request([], ['country' => $country, 'postcode' => $postcode, $carrier => $carrier]);
+  public function getPickupPoints($country, $postcode, $carrier, $product = NULL, $shop_id = NULL) {
+    $options = ['country' => $country, 'postcode' => $postcode, 'carrier' => $carrier];
+    if (isset($product)) {
+      $options += ['product' => $product];
+    }
+    if (isset($shop_id)) {
+      $options += ['shop_id' => $shop_id];
+    }
+    $xml = $this->request([], $options);
     return Results::fromXML($xml);
   }
 }
