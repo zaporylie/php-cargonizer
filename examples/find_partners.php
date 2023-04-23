@@ -17,7 +17,9 @@ try {
 
     /** @var \zaporylie\Cargonizer\Data\Results $result */
     $result = (new \zaporylie\Cargonizer\Partners())->getPickupPoints($_POST['country'], $_POST['postcode'], $_POST['carrier']);
+    echo '<pre>';
     var_dump($result);
+    echo '</pre>';
   }
 
 }
@@ -45,5 +47,5 @@ catch (\Exception $e) {
   <label for="country">Country</label>
   <input name="country" required="required" type="text"  <?php echo isset($_POST['country']) ? 'value="' . $_POST['country'] .'"': NULL ?>>
 
-  <input type="submit" value="Get quote">
+  <input type="submit" value="Get list of partners">
 </form>

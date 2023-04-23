@@ -24,7 +24,7 @@ class ScriptHandler
   public static function createExamplesConfigFile()
   {
     $fs = new Filesystem();
-    $root = __DIR__ . '/../examples/';
+    $root = __DIR__ . '/../../../examples/';
     if (!$fs->exists($root . 'config.yml')) {
       $settings = [
         'endpoint' => '',
