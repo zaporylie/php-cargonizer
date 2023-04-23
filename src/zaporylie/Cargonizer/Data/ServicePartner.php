@@ -45,6 +45,11 @@ class ServicePartner implements SerializableDataInterface {
   protected $country;
 
   /**
+   * @var \zaporylie\Cargonizer\Data\OpeningHours
+   */
+  protected $openingHours;
+
+  /**
    * @return string
    */
   public function getName() {
@@ -91,6 +96,15 @@ class ServicePartner implements SerializableDataInterface {
    */
   public function getNumber() {
     return $this->number;
+  }
+
+  /**
+   * Gets openingHours value.
+   *
+   * @return \zaporylie\Cargonizer\Data\OpeningHours
+   */
+  public function getOpeningHours(): OpeningHours {
+    return $this->openingHours;
   }
 
   /**
@@ -150,6 +164,15 @@ class ServicePartner implements SerializableDataInterface {
   }
 
   /**
+   * @param \zaporylie\Cargonizer\Data\OpeningHours $openingHours
+   *   The opening hours.
+   */
+  public function setOpeningHours(OpeningHours $openingHours) {
+    $this->openingHours = $openingHours;
+    return $openingHours;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function fromXML(\SimpleXMLElement $xml) {
@@ -161,6 +184,9 @@ class ServicePartner implements SerializableDataInterface {
     $partner->setAddress2((string) $xml->address2);
     $partner->setCity((string) $xml->city);
     $partner->setNumber((int) $xml->number);
+    if ($xml->{'opening-hours'} instanceof \SimpleXMLElement) {
+      $partner->setOpeningHours(OpeningHours::fromXML($xml));
+    }
     return $partner;
   }
 
