@@ -10,7 +10,7 @@ namespace zaporylie\Cargonizer\Data;
 class ServicePartner implements SerializableDataInterface {
 
   /**
-   * @var int
+   * @var string
    */
   protected $number;
 
@@ -92,7 +92,7 @@ class ServicePartner implements SerializableDataInterface {
   }
 
   /**
-   * @return int
+   * @return string
    */
   public function getNumber() {
     return $this->number;
@@ -183,7 +183,7 @@ class ServicePartner implements SerializableDataInterface {
     $partner->setAddress1((string) $xml->address1);
     $partner->setAddress2((string) $xml->address2);
     $partner->setCity((string) $xml->city);
-    $partner->setNumber((int) $xml->number);
+    $partner->setNumber((string) $xml->number);
     if ($xml->{'opening-hours'} instanceof \SimpleXMLElement) {
       $partner->setOpeningHours(OpeningHours::fromXML($xml));
     }
